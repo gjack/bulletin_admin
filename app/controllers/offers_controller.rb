@@ -1,10 +1,11 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   # GET /offers
   # GET /offers.json
   def index
-    @offers = Offer.all
+    @offers = current_organization.offers.all
   end
 
   # GET /offers/1
@@ -14,7 +15,7 @@ class OffersController < ApplicationController
 
   # GET /offers/new
   def new
-    @offer = Offer.new
+    @offer = current_organization.offers.new
   end
 
   # GET /offers/1/edit
@@ -24,7 +25,7 @@ class OffersController < ApplicationController
   # POST /offers
   # POST /offers.json
   def create
-    @offer = Offer.new(offer_params)
+    @offer = current_organization.offers.new(offer_params)
 
     respond_to do |format|
       if @offer.save
@@ -64,7 +65,7 @@ class OffersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
-      @offer = Offer.find(params[:id])
+      @offer = current_organization.offers.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
