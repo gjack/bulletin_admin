@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_190445) do
+ActiveRecord::Schema.define(version: 2020_04_29_202215) do
+
+  create_table "offers", force: :cascade do |t|
+    t.integer "organization_id"
+    t.string "title"
+    t.text "description"
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_offers_on_organization_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
