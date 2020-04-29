@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @need.organization_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @need.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @need.description %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @need.created_by_id %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @need.updated_by_id %>
+</p>
+
+<%= link_to 'Edit', edit_need_path(@need) %> |
+<%= link_to 'Back', needs_path %>

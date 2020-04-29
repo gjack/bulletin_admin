@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_202215) do
+ActiveRecord::Schema.define(version: 2020_04_29_210335) do
+
+  create_table "needs", force: :cascade do |t|
+    t.integer "organization_id", null: false
+    t.string "title"
+    t.text "description"
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_needs_on_organization_id"
+  end
 
   create_table "offers", force: :cascade do |t|
-    t.integer "organization_id"
+    t.integer "organization_id", null: false
     t.string "title"
     t.text "description"
     t.integer "created_by_id"
@@ -45,4 +56,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_202215) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "needs", "organizations"
+  add_foreign_key "offers", "organizations"
 end

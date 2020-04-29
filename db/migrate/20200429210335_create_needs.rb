@@ -1,6 +1,6 @@
-class CreateOffers < ActiveRecord::Migration[6.0]
+class CreateNeeds < ActiveRecord::Migration[6.0]
   def change
-    create_table :offers do |t|
+    create_table :needs do |t|
       t.belongs_to :organization, null: false, foreign_key: true
       t.string :title
       t.text :description

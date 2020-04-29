@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Needs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Organization</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @needs.each do |need| %>
+      <tr>
+        <td><%= need.organization_id %></td>
+        <td><%= need.title %></td>
+        <td><%= need.description %></td>
+        <td><%= need.created_by_id %></td>
+        <td><%= need.updated_by_id %></td>
+        <td><%= link_to 'Show', need %></td>
+        <td><%= link_to 'Edit', edit_need_path(need) %></td>
+        <td><%= link_to 'Destroy', need, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Need', new_need_path %>
