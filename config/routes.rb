@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :subscribers
+  resources :subscribers
   resources :needs
   resources :offers
   get 'welcome/index'
