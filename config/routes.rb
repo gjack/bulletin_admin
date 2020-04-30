@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   namespace :v1, defaults: { format: :json } do
-    resources :subscribers, only: %i[create update show]
+    resources :subscribers, only: %i[create]
     resource :subscribers_sessions, only: %i[create destroy show]
     resources :organizations, only: %i[index show]
   end
