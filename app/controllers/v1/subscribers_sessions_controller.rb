@@ -1,4 +1,4 @@
-class V1::SubscriberSessionsController < ApplicationController
+class V1::SubscribersSessionsController < ApplicationController
   def show
     current_subscriber ? head(:ok) : head(:unauthorized)
   end

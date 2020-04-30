@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :v1, defaults: { format: :json } do
     resources :subscribers, only: %i[create update show]
-    resource :subscriber_sessions, only: %i[create destroy show]
+    resource :subscribers_sessions, only: %i[create destroy show]
     resources :organizations, only: %i[index show]
   end
 end
