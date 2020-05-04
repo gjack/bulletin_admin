@@ -53,6 +53,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.hosts << ENV['NGROK_HOST'] if ENV['NGROK_HOST'].present?
+  # all need to do before starting is export NGROK_HOST=5e7cf079.ngrok.io
+
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
