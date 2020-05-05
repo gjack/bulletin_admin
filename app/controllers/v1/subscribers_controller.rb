@@ -7,7 +7,8 @@ class V1::SubscribersController < ApplicationController
     @subscriber = Subscriber.new(subscriber_params)
 
     if @subscriber.save
-      render :create
+      web_token = WebToken.encode(@subscriber)
+      render :create, locals: { token: web_token }
     else
       head(:unprocessable_entity)
     end

@@ -1,10 +1,12 @@
 json.data do
-  json.user do
+  json.subscriber do
     json.call(
       @subscriber,
       :id,
       :email,
-      :authentication_token,
+      :first_name,
+      :last_name
     )
   end
+  json.token token
 end
