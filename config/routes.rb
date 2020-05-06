@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :subscribers, only: %i[create]
     resource :subscribers_sessions, only: %i[create destroy show]
     resources :organizations, only: %i[index show]
+    resources :needs
   end
 end
