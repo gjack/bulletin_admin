@@ -6,8 +6,8 @@ class V1::NeedsController < ApplicationController
 
   def index
     if current_subscriber
-      needs = Need.all
-      render :index, locals: { needs: needs }, status: :ok
+      @needs = Need.all
+      render :index, locals: { needs: @needs }, status: :ok
     else
       head(:unauthorized)
     end

@@ -7,8 +7,11 @@ json.call(
 )
 
 json.author do
-  json.name need.created_by.full_name
-  json.email need.created_by.email
+  json.name need.created_by&.full_name
+  json.email need.created_by&.email
 end
 
-json.organization need.organization.name
+json.organization do
+  json.name need.organization.name
+  json.id  need.organization.id
+end
