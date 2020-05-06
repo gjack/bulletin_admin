@@ -4,7 +4,11 @@ class V1::SubscribersSessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    current_subscriber ? head(:ok) : head(:unauthorized)
+    if current_subscriber
+      render :show, status: :ok
+    else
+      head(:unauthorized)
+    end
   end
 
   def create
