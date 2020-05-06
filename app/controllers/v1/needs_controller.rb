@@ -12,4 +12,24 @@ class V1::NeedsController < ApplicationController
       head(:unauthorized)
     end
   end
+
+  def create
+    if current_subscriber
+      Subscriber.current_subscriber = current_subscriber
+      @need = Need.new(need_params)
+      if @need.save
+        render :create, status: :created, locals: { need: @need }
+      else
+        render json: { error: @need.errors }, status: :unprocessable_entity
+      end
+    else
+      head(:unauthorized)
+    end
+  end
+
+  private
+
+  def need_params
+    params.require(:need).permit(:title, :description, :organization_id)
+  end
 end
