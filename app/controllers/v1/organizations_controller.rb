@@ -2,15 +2,25 @@
 
 class V1::OrganizationsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_subscriber!
+
 
   def index
-    organizations = Organization.all
-    render :index, locals: { organizations: organizations }, status: :ok
+    if current_subscriber
+      organizations = Organization.all
+      render :index, locals: { organizations: organizations }, status: :ok
+    else
+      head(:unauthorized)
+    end
   end
 
   def show
-    organization = Organizations.find(params[:id])
+    if current_subscriber
+      organization = Organizations.find(params[:id])
 
-    render :show, locals: { organization: organization }, status: :ok
+      render :show, locals: { organization: organization }, status: :ok
+    else
+      head(:unauthorized)
+    end
   end
 end
