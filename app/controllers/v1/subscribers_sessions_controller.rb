@@ -5,6 +5,7 @@ class V1::SubscribersSessionsController < ApplicationController
 
   def show
     if current_subscriber
+      @subscriber = current_subscriber
       render :show, status: :ok
     else
       head(:unauthorized)

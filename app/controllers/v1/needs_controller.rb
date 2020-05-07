@@ -6,7 +6,7 @@ class V1::NeedsController < ApplicationController
 
   def index
     if current_subscriber
-      @needs = Need.all
+      @needs = filter_needs
       render :index, locals: { needs: @needs }, status: :ok
     else
       head(:unauthorized)
@@ -31,5 +31,24 @@ class V1::NeedsController < ApplicationController
 
   def need_params
     params.require(:need).permit(:title, :description, :organization_id)
+  end
+
+  def filter_needs
+    needs = Need.all
+    if query.present?
+      needs = needs.where("title LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")
+    end
+    if organization_id.present?
+      needs = needs.where(organization_id: organization_id)
+    end
+    needs
+  end
+
+  def query
+    params.dig(:query)
+  end
+
+  def organization_id
+    params.dig(:organization_id)
   end
 end
